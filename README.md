@@ -164,6 +164,3 @@ Seeders will create one new client entry in application and 2 users entry one ad
     "error": {},
     "data": null
 }
-```
-### Upcoming update
-```
