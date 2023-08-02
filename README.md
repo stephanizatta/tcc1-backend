@@ -167,10 +167,3 @@ Seeders will create one new client entry in application and 2 users entry one ad
 ```
 ### Upcoming update
 ```
-> suggestions and improvements are most welcome
-```
-### Privacy
-> For public use anyone can use it
-### Contact 
-* Follow [@me](https://twitter.com/binitghetiya) on Twitter
-* Email <binitlearning@gmail.com>
