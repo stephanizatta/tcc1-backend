@@ -1,7 +1,5 @@
 /* eslint-disable no-plusplus */
 require('@babel/register');
-/* eslint-disable no-console */
-const chalk = require('chalk');
 const dotenv = require('dotenv');
 const cluster = require('cluster');
 const numCores = require('os').cpus().length;
@@ -10,7 +8,6 @@ const app = require('./app');
 // Handle uncaught exceptions
 process.on('uncaughtException', (uncaughtExc) => {
   // Won't execute
-  console.log(chalk.bgRed('UNCAUGHT EXCEPTION! Shutting down...'));
   console.log('uncaughtException Err::', uncaughtExc);
   console.log('uncaughtException Stack::', JSON.stringify(uncaughtExc.stack));
   process.exit(1);
@@ -62,7 +59,7 @@ const setUpExpress = () => {
   const port = process.env.APP_PORT || 3001;
 
   const server = app.listen(port, () => {
-    console.log(`App running on port ${chalk.greenBright(port)}...`);
+    console.log(`App running on port ${port}...`);
   });
 
   // In case of an error
@@ -74,7 +71,7 @@ const setUpExpress = () => {
 
   // Handle unhandled promise rejections
   process.on('unhandledRejection', (err) => {
-    console.log(chalk.bgRed('UNHANDLED REJECTION! 💥 Shutting down...'));
+    console.log('UNHANDLED REJECTION! 💥 Shutting down...');
     console.log(err.name, err.message);
     // Close server & exit process
     server.close(() => {
