@@ -66,7 +66,8 @@ export const register = async (req, res) => {
       verifyToken: uniqueId(),
     };
 
-    const newUser = await User.create(payload);
+    await User.create(payload);
+
     return successResponse(req, res, {});
   } catch (error) {
     return errorResponse(req, res, error.message);
