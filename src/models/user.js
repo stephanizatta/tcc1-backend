@@ -1,15 +1,10 @@
-
-
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     'User',
     {
-      firstName: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      lastName: {
-        type: DataTypes.STRING,
       },
       email: {
         type: DataTypes.STRING,
@@ -18,12 +13,8 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type: DataTypes.STRING,
       },
-      profilePic: {
+      userType: {
         type: DataTypes.STRING,
-      },
-      isAdmin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
       },
       verifyToken: {
         type: DataTypes.STRING,
@@ -36,18 +27,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       defaultScope: {
-        attributes: { exclude: ['password', 'verifyToken', 'isAdmin'] },
+        attributes: { exclude: ['password', 'verifyToken'] },
       },
       scopes: {
         withSecretColumns: {
-          attributes: { include: ['password', 'verifyToken', 'isAdmin'] },
+          attributes: { include: ['password', 'verifyToken'] },
         },
       },
     },
   );
-  // eslint-disable-next-line no-unused-vars
-  User.associate = function (models) {
-    // associations can be defined here
-  };
+
   return User;
 };

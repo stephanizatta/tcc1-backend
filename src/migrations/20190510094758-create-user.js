@@ -1,5 +1,3 @@
-
-
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.createTable('Users', {
     id: {
@@ -8,10 +6,7 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    firstName: {
-      type: Sequelize.STRING,
-    },
-    lastName: {
+    name: {
       type: Sequelize.STRING,
     },
     email: {
@@ -20,12 +15,14 @@ module.exports = {
     password: {
       type: Sequelize.STRING,
     },
-    profilePic: {
+    userType: {
       type: Sequelize.STRING,
     },
-    isAdmin: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: false,
+    doctorCrm: {
+      type: Sequelize.STRING,
+    },
+    doctorSignature: {
+      type: Sequelize.TEXT('long'),
     },
     createdAt: {
       allowNull: false,

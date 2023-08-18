@@ -9,7 +9,7 @@ export const allUsers = async (req, res) => {
     const page = req.params.page || 1;
     const limit = 2;
     const users = await User.findAndCountAll({
-      order: [['createdAt', 'DESC'], ['firstName', 'ASC']],
+      order: [['createdAt', 'DESC'], ['name', 'ASC']],
       offset: (page - 1) * limit,
       limit,
     });
@@ -22,9 +22,8 @@ export const allUsers = async (req, res) => {
 export const register = async (req, res) => {
   try {
     const {
-      email, password, firstName, lastName,
+      email, password, firstName, userType,
     } = req.body;
-    console.log(req.body);
     if (process.env.IS_GOOGLE_AUTH_ENABLE === 'true') {
       if (!req.body.code) {
         throw new Error('code must be defined');
@@ -59,11 +58,11 @@ export const register = async (req, res) => {
       .digest('hex');
     const payload = {
       email,
-      firstName,
-      lastName,
+      name: firstName,
       password: reqPass,
       isVerified: false,
       verifyToken: uniqueId(),
+      userType,
     };
 
     await User.create(payload);

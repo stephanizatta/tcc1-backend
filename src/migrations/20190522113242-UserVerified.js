@@ -1,5 +1,3 @@
-
-
 module.exports = {
   up: (queryInterface, Sequelize) => Promise.all([
     queryInterface.addColumn('Users', 'verifyToken', {

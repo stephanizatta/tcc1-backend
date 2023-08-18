@@ -14,20 +14,14 @@ export const changePassword = {
 };
 
 export const register = {
-
-  firstName: Joi.string().required(),
-  email: Joi.string()
-    .email()
-    .required(),
+  name: Joi.string().required(),
+  email: Joi.string().email().required(),
   password: Joi.string().required(),
-
 };
 
 export const login = {
   body: {
-    email: Joi.string()
-      .email()
-      .required(),
+    email: Joi.string().email().required(),
     password: Joi.string().required(),
   },
 };

@@ -1,5 +1,3 @@
-/* eslint-disable no-plusplus */
-/* eslint-disable no-useless-escape */
 export const successResponse = (req, res, data, code = 200) => res.send({
   code,
   data,
