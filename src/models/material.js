@@ -1,10 +1,9 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, Sequelize) => {
   const Material = sequelize.define(
     'Material',
     {
-      description: {
-        type: DataTypes.STRING,
-        allowNull: false,
+      descricao: {
+        type: Sequelize.STRING,
       },
     },
   );

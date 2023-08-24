@@ -2,20 +2,20 @@ import { Material } from '../../models';
 import { successResponse, errorResponse } from '../../helpers';
 
 // eslint-disable-next-line import/prefer-default-export
-export const materialRegister = async (req, res) => {
+export const cadastrarMaterial = async (req, res) => {
   try {
-    const { description } = req.body;
+    const { descricao } = req.body;
 
     const material = await Material.findOne({
-      where: { description },
+      where: { descricao },
     });
 
     if (material) {
-      throw new Error('Material already exists');
+      throw new Error('Material já existe');
     }
 
     const payload = {
-      description,
+      descricao,
     };
 
     await Material.create(payload);

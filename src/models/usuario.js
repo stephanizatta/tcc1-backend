@@ -1,8 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define(
-    'User',
+  const Usuario = sequelize.define(
+    'Usuario',
     {
-      name: {
+      nome: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      senha: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -10,32 +14,30 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      password: {
+      tipoDeUsuario: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
-      userType: {
+      medicoCrm: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
-      verifyToken: {
+      assinaturaMedico: {
         type: DataTypes.STRING,
-        defaultValue: null,
-      },
-      isVerified: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        allowNull: false,
       },
     },
     {
       defaultScope: {
-        attributes: { exclude: ['password', 'verifyToken'] },
+        attributes: { exclude: ['senha'] },
       },
       scopes: {
         withSecretColumns: {
-          attributes: { include: ['password', 'verifyToken'] },
+          attributes: { include: ['senha'] },
         },
       },
     },
   );
 
-  return User;
+  return Usuario;
 };

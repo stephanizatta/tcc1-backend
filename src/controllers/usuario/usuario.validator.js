@@ -2,7 +2,7 @@ const Joi = require('joi');
 
 export const getOtherUserProfile = {
   body: {
-    userId: Joi.number().required(),
+    idUsuario: Joi.number().required(),
   },
 };
 
@@ -13,15 +13,15 @@ export const changePassword = {
   },
 };
 
-export const register = {
-  name: Joi.string().required(),
+export const cadastrarUsuario = {
+  nome: Joi.string().required(),
   email: Joi.string().email().required(),
-  password: Joi.string().required(),
+  senha: Joi.string().required(),
 };
 
 export const login = {
   body: {
     email: Joi.string().email().required(),
-    password: Joi.string().required(),
+    senha: Joi.string().required(),
   },
 };

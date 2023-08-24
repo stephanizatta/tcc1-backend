@@ -6,7 +6,7 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    description: {
+    descricao: {
       type: Sequelize.STRING,
     },
     createdAt: {

@@ -1,40 +1,37 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Reports', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Usuarios', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    userType: {
+    nome: {
       type: Sequelize.STRING,
     },
-    hospital: {
+    senha: {
       type: Sequelize.STRING,
     },
-    doctor: {
+    email: {
       type: Sequelize.STRING,
     },
-    doctorCrm: {
+    tipoDeUsuario: {
       type: Sequelize.STRING,
     },
-    patientName: {
+    medicoCrm: {
       type: Sequelize.STRING,
     },
-    date: {
-      allowNull: false,
-      type: Sequelize.DATE,
-    },
-    instrumentator: {
-      type: Sequelize.STRING,
-    },
-    healthInsurance: {
+    assinaturaMedico: {
       type: Sequelize.STRING,
     },
     createdAt: {
       allowNull: false,
       type: Sequelize.DATE,
     },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+    },
   }),
-  down: queryInterface => queryInterface.dropTable('Reports'),
+  down: queryInterface => queryInterface.dropTable('Usuarios'),
 };

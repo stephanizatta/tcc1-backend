@@ -1,5 +1,5 @@
 import { errorResponse } from '../helpers';
-import { User } from '../models';
+import { Usuario } from '../models';
 
 const jwt = require('jsonwebtoken');
 
@@ -10,16 +10,20 @@ const apiAuth = async (req, res, next) => {
   const token = req.headers['x-token'];
   try {
     const decoded = jwt.verify(token, process.env.SECRET);
-    req.user = decoded.user;
-    const user = await User.scope('withSecretColumns').findOne({
-      where: { email: req.user.email },
+    req.usuario = decoded.usuario;
+
+    const usuario = await Usuario.scope('withSecretColumns').findOne({
+      where: { email: req.usuario.email },
     });
-    if (!user) {
+
+    if (!usuario) {
       return errorResponse(req, res, 'User is not found in system', 401);
     }
-    const reqUser = { ...user.get() };
-    reqUser.userId = user.id;
+
+    const reqUser = { ...usuario.get() };
+    reqUser.userId = usuario.id;
     req.user = reqUser;
+
     return next();
   } catch (error) {
     return errorResponse(
