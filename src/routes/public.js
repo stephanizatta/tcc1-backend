@@ -26,7 +26,7 @@ router.post(
   materialController.cadastrarMaterial,
 );
 router.post(
-  '/editarMaterial',
+  '/editarMaterial/:id',
   materialController.editarMaterial,
 );
 router.get(

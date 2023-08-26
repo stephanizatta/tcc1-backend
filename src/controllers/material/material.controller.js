@@ -41,12 +41,10 @@ export const visualizarMateriais = async (req, res) => {
 
 export const editarMaterial = async (req, res) => {
   try {
-    const { id, descricao } = req.body;
+    const { id } = req.params;
+    const { descricao } = req.body;
 
-    const material = await Material.findOne({
-      where: { id },
-    });
-
+    const material = await Material.findByPk(id);
     await material.update({ descricao });
 
     return successResponse(req, res, {});
