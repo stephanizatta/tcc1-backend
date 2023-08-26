@@ -20,11 +20,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       medicoCrm: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
       assinaturaMedico: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
     },
     {

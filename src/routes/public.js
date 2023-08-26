@@ -17,15 +17,26 @@ router.post(
   usuarioController.cadastrarUsuario,
 );
 router.post(
+  '/visualizarUsuarios',
+  usuarioController.visualizarUsuarios,
+);
+
+router.post(
   '/cadastrarMaterial',
   materialController.cadastrarMaterial,
 );
 router.post(
+  '/editarMaterial',
+  materialController.editarMaterial,
+);
+router.get(
+  '/visualizarMateriais',
+  materialController.visualizarMateriais,
+);
+
+router.post(
   '/cadastrarRelatorio',
   relatorioController.cadastrarRelatorio,
 );
-router.post(
-  '/visualizarUsuarios',
-  usuarioController.visualizarUsuarios,
-);
+
 module.exports = router;
