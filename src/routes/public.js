@@ -16,9 +16,17 @@ router.post(
   '/cadastrarUsuario',
   usuarioController.cadastrarUsuario,
 );
-router.post(
+router.get(
   '/visualizarUsuarios',
   usuarioController.visualizarUsuarios,
+);
+router.post(
+  '/editarUsuario/:id',
+  usuarioController.editarUsuario,
+);
+router.post(
+  '/excluirUsuario/:id',
+  usuarioController.excluirUsuario,
 );
 
 router.post(

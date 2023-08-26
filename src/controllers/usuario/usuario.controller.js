@@ -5,14 +5,41 @@ import { successResponse, errorResponse, uniqueId } from '../../helpers';
 
 export const visualizarUsuarios = async (req, res) => {
   try {
-    const page = req.params.page || 1;
-    const limit = 2;
-    const usuarios = await Usuario.findAndCountAll({
-      order: [['createdAt', 'DESC'], ['name', 'ASC']],
-      offset: (page - 1) * limit,
-      limit,
-    });
+    const usuarios = await Usuario.findAll(
+      {
+        where: req.query.id
+          ? { id: req.query.id } : undefined,
+      },
+    );
     return successResponse(req, res, { usuarios });
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
+
+export const editarUsuario = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { nome } = req.body;
+    const { tipoDeUsuario } = req.body;
+
+    const usuario = await Usuario.findByPk(id);
+    await usuario.update({ nome, tipoDeUsuario });
+
+    return successResponse(req, res, {});
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
+
+export const excluirUsuario = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const usuario = await Usuario.findByPk(id);
+    await usuario.destroy({ id });
+
+    return successResponse(req, res, {});
   } catch (error) {
     return errorResponse(req, res, error.message);
   }
