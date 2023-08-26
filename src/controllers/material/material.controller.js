@@ -52,3 +52,16 @@ export const editarMaterial = async (req, res) => {
     return errorResponse(req, res, error.message);
   }
 };
+
+export const excluirMaterial = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const material = await Material.findByPk(id);
+    await material.destroy({ id });
+
+    return successResponse(req, res, {});
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};

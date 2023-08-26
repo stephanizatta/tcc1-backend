@@ -33,6 +33,10 @@ router.get(
   '/visualizarMateriais',
   materialController.visualizarMateriais,
 );
+router.post(
+  '/excluirMaterial/:id',
+  materialController.excluirMaterial,
+);
 
 router.post(
   '/cadastrarRelatorio',
