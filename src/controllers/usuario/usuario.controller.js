@@ -48,7 +48,7 @@ export const excluirUsuario = async (req, res) => {
 export const cadastrarUsuario = async (req, res) => {
   try {
     const {
-      email, senha, nome, tipoDeUsuario,
+      email, senha, nome, tipoDeUsuario, medicoCrm, assinaturaMedico,
     } = req.body;
 
     const usuario = await Usuario.scope('withSecretColumns').findOne({
@@ -71,6 +71,8 @@ export const cadastrarUsuario = async (req, res) => {
       isVerified: false,
       verifyToken: uniqueId(),
       tipoDeUsuario,
+      medicoCrm,
+      assinaturaMedico,
     };
 
     await Usuario.create(payload);
