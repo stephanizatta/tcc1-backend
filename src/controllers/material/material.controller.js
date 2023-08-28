@@ -3,21 +3,19 @@ import { successResponse, errorResponse } from '../../helpers';
 
 export const cadastrarMaterial = async (req, res) => {
   try {
-    const { descricao } = req.body;
+    const { descriptions } = req.body;
 
     const material = await Material.findOne({
-      where: { descricao },
+      where: { descricao: descriptions },
     });
 
     if (material) {
       throw new Error('Material já existe');
     }
 
-    const payload = {
-      descricao,
-    };
+    const payload = descriptions.map(descricao => ({ descricao }));
 
-    await Material.create(payload);
+    await Material.bulkCreate(payload);
 
     return successResponse(req, res, {});
   } catch (error) {
