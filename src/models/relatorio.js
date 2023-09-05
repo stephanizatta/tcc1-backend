@@ -2,14 +2,11 @@ module.exports = (sequelize, Sequelize) => {
   const Relatorio = sequelize.define(
     'Relatorio',
     {
-      tipoDeUsuario: {
-        type: Sequelize.STRING,
-      },
       hospital: {
         type: Sequelize.STRING,
       },
-      idMedico: {
-        type: Sequelize.INTEGER,
+      medico: {
+        type: Sequelize.STRING,
       },
       nomePaciente: {
         type: Sequelize.STRING,
@@ -17,8 +14,8 @@ module.exports = (sequelize, Sequelize) => {
       convenio: {
         type: Sequelize.STRING,
       },
-      idInstrumentador: {
-        type: Sequelize.INTEGER,
+      instrumentador: {
+        type: Sequelize.STRING,
       },
       data: {
         type: Sequelize.DATE,

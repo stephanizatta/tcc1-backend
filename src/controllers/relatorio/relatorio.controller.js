@@ -1,31 +1,90 @@
 import { Relatorio } from '../../models';
 import { successResponse, errorResponse } from '../../helpers';
 
-// eslint-disable-next-line import/prefer-default-export
 export const cadastrarRelatorio = async (req, res) => {
   try {
-    const
-      {
-        tipoDeUsuario,
-        hospital,
-        idMedico,
-        nomePaciente,
-        convenio,
-        idInstrumentator,
-        data,
-      } = req.body;
-
-    const payload = {
-      tipoDeUsuario,
+    const {
       hospital,
-      idMedico,
       nomePaciente,
       convenio,
-      idInstrumentator,
       data,
+      medico,
+      instrumentador,
+    } = req.body;
+
+    const payload = {
+      hospital,
+      nomePaciente,
+      convenio,
+      data,
+      medico,
+      instrumentador,
     };
 
     await Relatorio.create(payload);
+
+    return successResponse(req, res, {});
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
+
+export const visualizarRelatorios = async (req, res) => {
+  try {
+    const relatorios = await Relatorio.findAll(
+      {
+        where: req.query.id
+          ? { id: req.query.id } : undefined,
+      },
+    );
+    return successResponse(req, res, { relatorios });
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
+
+export const editarRelatorio = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { quantidade } = req.body;
+    const { descricao } = req.body;
+    const { referencia } = req.body;
+    const { lote } = req.body;
+    const { hospital } = req.body;
+    const { medico } = req.body;
+    const { medicoCrm } = req.body;
+    const { nomePaciente } = req.body;
+    const { data } = req.body;
+    const { instrumentador } = req.body;
+    const { convenio } = req.body;
+
+    const relatorio = await Relatorio.findByPk(id);
+    await relatorio.update({
+      quantidade,
+      descricao,
+      referencia,
+      lote,
+      hospital,
+      medico,
+      medicoCrm,
+      nomePaciente,
+      data,
+      instrumentador,
+      convenio,
+    });
+
+    return successResponse(req, res, {});
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
+
+export const excluirRelatorio = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const relatorio = await Relatorio.findByPk(id);
+    await relatorio.destroy({ id });
 
     return successResponse(req, res, {});
   } catch (error) {

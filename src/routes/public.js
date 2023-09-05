@@ -50,5 +50,17 @@ router.post(
   '/cadastrarRelatorio',
   relatorioController.cadastrarRelatorio,
 );
+router.post(
+  '/editarRelatorio/:id',
+  relatorioController.editarRelatorio,
+);
+router.get(
+  '/visualizarRelatorios',
+  relatorioController.visualizarRelatorios,
+);
+router.post(
+  '/excluirRelatorio/:id',
+  relatorioController.excluirRelatorio,
+);
 
 module.exports = router;

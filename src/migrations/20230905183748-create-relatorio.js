@@ -6,14 +6,11 @@ module.exports = {
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    tipoDeUsuario: {
-      type: Sequelize.STRING,
-    },
     hospital: {
       type: Sequelize.STRING,
     },
-    idMedico: {
-      type: Sequelize.INTEGER,
+    medico: {
+      type: Sequelize.STRING,
     },
     nomePaciente: {
       type: Sequelize.STRING,
@@ -21,8 +18,8 @@ module.exports = {
     convenio: {
       type: Sequelize.STRING,
     },
-    idInstrumentador: {
-      type: Sequelize.INTEGER,
+    instrumentador: {
+      type: Sequelize.STRING,
     },
     data: {
       type: Sequelize.DATE,
