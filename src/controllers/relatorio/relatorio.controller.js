@@ -1,4 +1,4 @@
-import { Relatorio } from '../../models';
+import { Relatorio, RelatorioMaterial } from '../../models';
 import { successResponse, errorResponse } from '../../helpers';
 
 export const cadastrarRelatorio = async (req, res) => {
@@ -12,6 +12,12 @@ export const cadastrarRelatorio = async (req, res) => {
       instrumentador,
     } = req.body;
 
+    const {
+      qtdMaterial,
+      referenciaMaterial,
+      loteMaterial,
+    } = req.body;
+
     const payload = {
       hospital,
       nomePaciente,
@@ -21,7 +27,16 @@ export const cadastrarRelatorio = async (req, res) => {
       instrumentador,
     };
 
-    await Relatorio.create(payload);
+    const relatorio = await Relatorio.create(payload);
+
+    const payloadMaterial = {
+      idRelatorio: relatorio.id,
+      qtdMaterial,
+      referenciaMaterial,
+      loteMaterial,      
+    };
+
+    await RelatorioMaterial.create(payloadMaterial);
 
     return successResponse(req, res, {});
   } catch (error) {
