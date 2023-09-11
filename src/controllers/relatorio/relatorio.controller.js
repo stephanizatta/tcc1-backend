@@ -33,7 +33,7 @@ export const cadastrarRelatorio = async (req, res) => {
       idRelatorio: relatorio.id,
       qtdMaterial,
       referenciaMaterial,
-      loteMaterial,      
+      loteMaterial,
     };
 
     await RelatorioMaterial.create(payloadMaterial);

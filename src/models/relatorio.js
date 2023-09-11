@@ -21,6 +21,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.DATE,
       },
     },
+    { freezeTableName: true },
   );
   return Relatorio;
 };
