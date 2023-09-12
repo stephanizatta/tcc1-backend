@@ -23,6 +23,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
     },
+    { freezeTableName: true },
   );
 
   return RelatorioMaterial;

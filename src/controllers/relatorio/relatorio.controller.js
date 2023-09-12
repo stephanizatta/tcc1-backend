@@ -12,12 +12,6 @@ export const cadastrarRelatorio = async (req, res) => {
       instrumentador,
     } = req.body;
 
-    const {
-      qtdMaterial,
-      referenciaMaterial,
-      loteMaterial,
-    } = req.body;
-
     const payload = {
       hospital,
       nomePaciente,
@@ -29,14 +23,21 @@ export const cadastrarRelatorio = async (req, res) => {
 
     const relatorio = await Relatorio.create(payload);
 
+    const {
+      qtdMaterial,
+      referenciaMaterial,
+      loteMaterial,
+    } = req.body;
+
     const payloadMaterial = {
+      idMaterial: 1,
       idRelatorio: relatorio.id,
       qtdMaterial,
       referenciaMaterial,
       loteMaterial,
     };
 
-    await RelatorioMaterial.create(payloadMaterial);
+    await RelatorioMaterial.bulkCreate(payloadMaterial);
 
     return successResponse(req, res, {});
   } catch (error) {
