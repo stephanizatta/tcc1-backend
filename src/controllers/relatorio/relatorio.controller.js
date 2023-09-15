@@ -8,34 +8,35 @@ export const cadastrarRelatorio = async (req, res) => {
       nomePaciente,
       convenio,
       data,
+      hora,
       medico,
       instrumentador,
+      materiaisList,
     } = req.body;
+
+    const [horas, minutos] = hora.split(':');
+    const date = new Date(data);
+    date.setHours(horas);
+    date.setMinutes(minutos);
 
     const payload = {
       hospital,
       nomePaciente,
       convenio,
-      data,
+      data: date,
       medico,
       instrumentador,
     };
 
     const relatorio = await Relatorio.create(payload);
 
-    const {
-      qtdMaterial,
-      referenciaMaterial,
-      loteMaterial,
-    } = req.body;
-
-    const payloadMaterial = {
-      idMaterial: 1,
+    const payloadMaterial = materiaisList.map(material => ({
+      idMaterial: material.idMaterial,
       idRelatorio: relatorio.id,
-      qtdMaterial,
-      referenciaMaterial,
-      loteMaterial,
-    };
+      qtdMaterial: material.quantidade,
+      referenciaMaterial: material.referencia,
+      loteMaterial: material.lote,
+    }));
 
     await RelatorioMaterial.bulkCreate(payloadMaterial);
 
@@ -51,6 +52,13 @@ export const visualizarRelatorios = async (req, res) => {
       {
         where: req.query.id
           ? { id: req.query.id } : undefined,
+        order: [['createdAt', 'asc']],
+        include: [{
+          model: RelatorioMaterial,
+          include: [{
+            association: RelatorioMaterial.Material,
+          }],
+        }],
       },
     );
     return successResponse(req, res, { relatorios });

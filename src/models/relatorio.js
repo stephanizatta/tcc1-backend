@@ -23,5 +23,10 @@ module.exports = (sequelize, Sequelize) => {
     },
     { freezeTableName: true },
   );
+
+  Relatorio.associate = function associate(models) {
+    Relatorio.Materiais = Relatorio.hasMany(models.RelatorioMaterial, { foreignKey: 'idRelatorio' });
+  };
+
   return Relatorio;
 };

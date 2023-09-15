@@ -26,5 +26,9 @@ module.exports = (sequelize, DataTypes) => {
     { freezeTableName: true },
   );
 
+  RelatorioMaterial.associate = function associate(models) {
+    RelatorioMaterial.Material = RelatorioMaterial.belongsTo(models.Material, { foreignKey: 'idMaterial' });
+  };
+
   return RelatorioMaterial;
 };
