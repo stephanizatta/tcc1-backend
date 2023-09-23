@@ -6,6 +6,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING,
       },
     },
+    { freezeTableName: true },
   );
   return Material;
 };

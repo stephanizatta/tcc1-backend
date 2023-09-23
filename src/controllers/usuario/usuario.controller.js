@@ -9,6 +9,7 @@ export const visualizarUsuarios = async (req, res) => {
       {
         where: req.query.id
           ? { id: req.query.id } : undefined,
+        order: [['nome', 'asc']],
       },
     );
     return successResponse(req, res, { usuarios });
@@ -91,7 +92,7 @@ export const login = async (req, res) => {
 
     const token = jwt.sign(
       {
-        usuarios: {
+        usuario: {
           id: usuario.id,
           email: usuario.email,
           createdAt: new Date(),

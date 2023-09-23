@@ -1,28 +1,28 @@
 module.exports = {
-  up: (queryInterface, Sequelize) => queryInterface.createTable('Relatorio', {
+  up: (queryInterface, Sequelize) => queryInterface.createTable('Usuario', {
     id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER,
     },
-    hospital: {
+    nome: {
       type: Sequelize.STRING,
     },
-    medico: {
+    senha: {
       type: Sequelize.STRING,
     },
-    nomePaciente: {
+    email: {
       type: Sequelize.STRING,
     },
-    convenio: {
+    tipoDeUsuario: {
       type: Sequelize.STRING,
     },
-    instrumentador: {
+    medicoCrm: {
       type: Sequelize.STRING,
     },
-    data: {
-      type: Sequelize.DATE,
+    assinaturaMedico: {
+      type: Sequelize.STRING,
     },
     createdAt: {
       allowNull: false,
@@ -33,5 +33,5 @@ module.exports = {
       type: Sequelize.DATE,
     },
   }),
-  down: queryInterface => queryInterface.dropTable('Relatorio'),
+  down: queryInterface => queryInterface.dropTable('Usuario'),
 };

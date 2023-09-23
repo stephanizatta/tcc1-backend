@@ -8,6 +8,12 @@ module.exports = (sequelize, Sequelize) => {
       medico: {
         type: Sequelize.STRING,
       },
+      medicoCrm: {
+        type: Sequelize.STRING,
+      },
+      assinaturaMedico: {
+        type: Sequelize.STRING,
+      },
       nomePaciente: {
         type: Sequelize.STRING,
       },

@@ -34,6 +34,7 @@ module.exports = (sequelize, DataTypes) => {
           attributes: { include: ['senha'] },
         },
       },
+      freezeTableName: true,
     },
   );
 

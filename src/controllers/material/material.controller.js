@@ -29,6 +29,7 @@ export const visualizarMateriais = async (req, res) => {
       {
         where: req.query.id
           ? { id: req.query.id } : undefined,
+        order: [['descricao', 'asc']],
       },
     );
     return successResponse(req, res, { materiais });

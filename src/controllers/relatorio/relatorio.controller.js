@@ -10,6 +10,7 @@ export const cadastrarRelatorio = async (req, res) => {
       data,
       hora,
       medico,
+      medicoCrm,
       instrumentador,
       materiaisList,
     } = req.body;
@@ -25,6 +26,7 @@ export const cadastrarRelatorio = async (req, res) => {
       convenio,
       data: date,
       medico,
+      medicoCrm,
       instrumentador,
     };
 
