@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
       },
       assinaturaMedico: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
       },
     },
     {

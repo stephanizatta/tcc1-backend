@@ -16,7 +16,7 @@ module.exports = {
       type: Sequelize.STRING,
     },
     assinaturaMedico: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
     },
     nomePaciente: {
       type: Sequelize.STRING,

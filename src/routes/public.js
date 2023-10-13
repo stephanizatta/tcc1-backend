@@ -62,5 +62,9 @@ router.post(
   '/excluirRelatorio/:id',
   relatorioController.excluirRelatorio,
 );
+router.post(
+  '/assinarRelatorio/:id',
+  relatorioController.assinarRelatorio,
+);
 
 module.exports = router;
