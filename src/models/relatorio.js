@@ -27,7 +27,10 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.DATE,
       },
     },
-    { freezeTableName: true },
+    {
+      freezeTableName: true,
+      paranoid: true,
+    },
   );
 
   Relatorio.associate = function associate(models) {

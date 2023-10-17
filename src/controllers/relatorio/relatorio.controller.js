@@ -61,6 +61,7 @@ export const visualizarRelatorios = async (req, res) => {
         include: [{
           model: RelatorioMaterial,
           include: [{
+            paranoid: false,
             association: RelatorioMaterial.Material,
           }],
         }],

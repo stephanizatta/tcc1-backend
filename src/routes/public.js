@@ -67,4 +67,9 @@ router.post(
   relatorioController.assinarRelatorio,
 );
 
+router.get(
+  '/visualizarMedicos',
+  usuarioController.visualizarMedicos,
+);
+
 module.exports = router;

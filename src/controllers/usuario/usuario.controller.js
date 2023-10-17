@@ -146,3 +146,17 @@ export const changePassword = async (req, res) => {
     return errorResponse(req, res, error.message);
   }
 };
+
+export const visualizarMedicos = async (req, res) => {
+  try {
+    const medicos = await Usuario.findAll(
+      {
+        where: { tipoDeUsuario: 'medico' },
+        order: [['nome', 'asc']],
+      },
+    );
+    return successResponse(req, res, { medicos });
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};
