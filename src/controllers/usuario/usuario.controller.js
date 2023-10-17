@@ -160,3 +160,17 @@ export const visualizarMedicos = async (req, res) => {
     return errorResponse(req, res, error.message);
   }
 };
+
+export const visualizarInstrumentadores = async (req, res) => {
+  try {
+    const instrumentadores = await Usuario.findAll(
+      {
+        where: { tipoDeUsuario: 'instrumentador' },
+        order: [['nome', 'asc']],
+      },
+    );
+    return successResponse(req, res, { instrumentadores });
+  } catch (error) {
+    return errorResponse(req, res, error.message);
+  }
+};

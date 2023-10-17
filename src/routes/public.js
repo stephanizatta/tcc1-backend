@@ -71,5 +71,9 @@ router.get(
   '/visualizarMedicos',
   usuarioController.visualizarMedicos,
 );
+router.get(
+  '/visualizarInstrumentadores',
+  usuarioController.visualizarInstrumentadores,
+);
 
 module.exports = router;
