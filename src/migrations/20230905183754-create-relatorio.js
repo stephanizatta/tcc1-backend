@@ -9,8 +9,8 @@ module.exports = {
     hospital: {
       type: Sequelize.STRING,
     },
-    medico: {
-      type: Sequelize.STRING,
+    idMedico: {
+      type: Sequelize.INTEGER,
     },
     medicoCrm: {
       type: Sequelize.STRING,

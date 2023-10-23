@@ -5,8 +5,8 @@ module.exports = (sequelize, Sequelize) => {
       hospital: {
         type: Sequelize.STRING,
       },
-      medico: {
-        type: Sequelize.STRING,
+      idMedico: {
+        type: Sequelize.INTEGER,
       },
       medicoCrm: {
         type: Sequelize.STRING,
@@ -35,6 +35,7 @@ module.exports = (sequelize, Sequelize) => {
 
   Relatorio.associate = function associate(models) {
     Relatorio.Materiais = Relatorio.hasMany(models.RelatorioMaterial, { foreignKey: 'idRelatorio' });
+    Relatorio.Medico = Relatorio.belongsTo(models.Usuario, { as: 'medico', foreignKey: 'idMedico' });
   };
 
   return Relatorio;

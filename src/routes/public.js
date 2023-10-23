@@ -54,10 +54,7 @@ router.post(
   '/editarRelatorio/:id',
   relatorioController.editarRelatorio,
 );
-router.get(
-  '/visualizarRelatorios',
-  relatorioController.visualizarRelatorios,
-);
+
 router.post(
   '/excluirRelatorio/:id',
   relatorioController.excluirRelatorio,

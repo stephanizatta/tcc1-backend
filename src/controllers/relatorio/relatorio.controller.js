@@ -26,7 +26,7 @@ export const cadastrarRelatorio = async (req, res) => {
       nomePaciente,
       convenio,
       data: date,
-      medico,
+      idMedico: medico,
       medicoCrm,
       instrumentador,
     };
@@ -51,20 +51,26 @@ export const cadastrarRelatorio = async (req, res) => {
 
 export const visualizarRelatorios = async (req, res) => {
   try {
+    const filtroPadrao = req.user.tipoDeUsuario === 'medico' ? { idMedico: req.user.id } : undefined;
+
     const relatorios = await Relatorio.findAll(
       {
         // eslint-disable-next-line no-nested-ternary
         where: req.query.id
-          ? { id: req.query.id } : req.query.assinatura
-            ? { assinaturaMedico: null } : undefined,
+          ? { id: req.query.id, ...filtroPadrao } : req.query.assinatura
+            ? { assinaturaMedico: null, ...filtroPadrao } : filtroPadrao,
         order: [['createdAt', 'asc']],
-        include: [{
-          model: RelatorioMaterial,
-          include: [{
-            paranoid: false,
-            association: RelatorioMaterial.Material,
+        include:
+          [{
+            association: Relatorio.Medico,
+          },
+          {
+            model: RelatorioMaterial,
+            include: [{
+              paranoid: false,
+              association: RelatorioMaterial.Material,
+            }],
           }],
-        }],
       },
     );
     return successResponse(req, res, { relatorios });
