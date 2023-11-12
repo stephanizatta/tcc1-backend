@@ -10,12 +10,14 @@ const router = express.Router();
 //= ===============================
 // API routes
 //= ===============================
-router.get('/me', usuarioController.profile);
+router.get('/visualizarPerfil', usuarioController.profile);
+
 router.post(
   '/changePassword',
   validate(usuarioValidator.changePassword),
   usuarioController.changePassword,
 );
+
 router.get(
   '/visualizarRelatorios',
   relatorioController.visualizarRelatorios,

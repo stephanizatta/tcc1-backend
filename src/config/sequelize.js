@@ -1,17 +1,14 @@
 const Sequelize = require('sequelize');
 
+const env = process.env.NODE_ENV || 'development';
+// eslint-disable-next-line import/no-dynamic-require
+const config = require(`${__dirname}/../config/config.js`)[env];
+
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASS,
-  {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    dialect: process.env.DB_DIALECT,
-    define: {
-      freezeTableName: true,
-    },
-  },
+  config.database,
+  config.username,
+  config.password,
+  config,
 );
 
 sequelize
@@ -22,3 +19,6 @@ sequelize
   .catch((err) => {
     console.error('Unable to connect to the database:', err);
   });
+
+
+module.exports = { sequelize };

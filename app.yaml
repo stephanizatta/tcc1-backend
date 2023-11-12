@@ -1,0 +1,5 @@
+runtime: nodejs14
+entrypoint: bash -c 'npm run db:migrate:prod && npm run prod'
+network:
+  forwarded_ports:
+    - 3001/tcp

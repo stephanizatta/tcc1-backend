@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-plusplus */
 require('@babel/register');
 const dotenv = require('dotenv');
@@ -56,7 +57,7 @@ const setupWorkerProcesses = () => {
 const setUpExpress = () => {
   dotenv.config({ path: '.env' });
 
-  const port = process.env.APP_PORT || 3001;
+  const port = process.env.PORT || 3001;
 
   const server = app.listen(port, () => {
     console.log(`App running on port ${port}...`);
@@ -88,14 +89,14 @@ const setUpExpress = () => {
 };
 
 // Setup server either with clustering or without it
-const setupServer = (isClusterRequired) => {
+const setupServer = () => {
   // If it is a master process then call setting up worker process
-  if (isClusterRequired && cluster.isMaster) {
-    setupWorkerProcesses();
-  } else {
-    // Setup server configurations and share port address for incoming requests
-    setUpExpress();
-  }
+  // if (isClusterRequired && cluster.isMaster) {
+  //   setupWorkerProcesses();
+  // } else {
+  // Setup server configurations and share port address for incoming requests
+  setUpExpress();
+  // }
 };
 
 if (process.env.NODE_ENV === 'production') {

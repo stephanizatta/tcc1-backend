@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
+import { Op } from 'sequelize';
 import { Usuario } from '../../models';
 import { successResponse, errorResponse, uniqueId } from '../../helpers';
 
@@ -21,11 +22,18 @@ export const visualizarUsuarios = async (req, res) => {
 export const editarUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    const { nome } = req.body;
-    const { tipoDeUsuario } = req.body;
+    const { nome, tipoDeUsuario, email } = req.body;
+
+    const usuarioComMesmoEmail = await Usuario.scope('withSecretColumns').findOne({
+      where: { email, id: { [Op.not]: id } },
+    });
+
+    if (usuarioComMesmoEmail) {
+      throw new Error('User already exists with same email');
+    }
 
     const usuario = await Usuario.findByPk(id);
-    await usuario.update({ nome, tipoDeUsuario });
+    await usuario.update({ nome, tipoDeUsuario, email });
 
     return successResponse(req, res, {});
   } catch (error) {
@@ -110,8 +118,8 @@ export const login = async (req, res) => {
 
 export const profile = async (req, res) => {
   try {
-    const { idUsuario } = req.usuario;
-    const usuario = await Usuario.findOne({ where: { id: idUsuario } });
+    const { id } = req.usuario;
+    const usuario = await Usuario.findOne({ where: { id } });
     return successResponse(req, res, { usuario });
   } catch (error) {
     return errorResponse(req, res, error.message);
